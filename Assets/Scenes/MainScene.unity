@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd220fa5033f9b84187f958a17caf3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
+  cam: {fileID: 519420031}
   followTarget: {fileID: 867915079}
 --- !u!1 &245317441
 GameObject:
@@ -342,8 +342,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0
+  far clip plane: 50
   field of view: 34
   orthographic: 1
   orthographic size: 2.3085938
@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd220fa5033f9b84187f958a17caf3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
+  cam: {fileID: 519420031}
   followTarget: {fileID: 867915079}
 --- !u!1 &1563169108
 GameObject:
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd220fa5033f9b84187f958a17caf3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
+  cam: {fileID: 519420031}
   followTarget: {fileID: 867915079}
 --- !u!1 &1719015130
 GameObject:
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd220fa5033f9b84187f958a17caf3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
+  cam: {fileID: 519420031}
   followTarget: {fileID: 867915079}
 --- !u!1 &1906582285
 GameObject:
@@ -888,8 +888,8 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 2.3085938
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    NearClipPlane: 0
+    FarClipPlane: 50
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd220fa5033f9b84187f958a17caf3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 519420031}
+  cam: {fileID: 519420031}
   followTarget: {fileID: 867915079}
 --- !u!1001 &1135840778716679697
 PrefabInstance:
