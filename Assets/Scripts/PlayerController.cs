@@ -1,14 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// The Player Controller.
+/// Based on https://www.youtube.com/playlist?list=PLyH-qXFkNSxmDU8ddeslEAtnXIDRLPd_V
+/// </summary>
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 5f;
+    public float runSpeed = 8f;
     Vector2 moveInput;
 
+    public float CurrentMoveSpeed
+    {
+        get
+        {
+            if (IsMoving)
+            {
+                if (IsRunning)
+                {
+                    return runSpeed;
+                }
+                else
+                {
+                    return walkSpeed;
+                }
+            }
+            else 
+            {
+                return 0f;  //idle speed
+            }
+        }
+    }
     [SerializeField]
     private bool _isMoving = false;
     public bool IsMoving { 
@@ -38,6 +65,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool _isFacingRight = true;
+    public bool IsFacingRight
+    {
+        get
+        {
+            return _isFacingRight;
+        }
+        private set
+        {
+            if (_isFacingRight != value)
+            {
+                transform.localScale *= new Vector2(-1, 1);
+            }
+
+            _isFacingRight = value;
+        }
+    }
+
     Rigidbody2D rb;
     Animator animator;
 
@@ -62,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -70,6 +115,22 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
 
         IsMoving = moveInput != Vector2.zero;
+
+        SetFacingDirection(moveInput);
+    }
+
+    private void SetFacingDirection(Vector2 moveInput)
+    {
+        if (moveInput.x > 0 && !IsFacingRight)
+        {
+            //Face the right
+            IsFacingRight = true;
+        }
+        else if (moveInput.x < 0 && IsFacingRight)
+        {
+            //Face the left
+            IsFacingRight = false;
+        }
     }
 
     public void OnRun(InputAction.CallbackContext context)
