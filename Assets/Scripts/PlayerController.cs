@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         private set
         {
             _isMoving = value;
-            animator.SetBool("isMoving", _isMoving);
+            animator.SetBool(AnimationStrings.isMoving, _isMoving);
         }
     }
 
