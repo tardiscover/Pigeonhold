@@ -12,6 +12,8 @@ public class SkeletonController : MonoBehaviour
         Left
     }
 
+    public DetectionZone attackZone;
+
     private WalkableDirection _walkDirection;
     public WalkableDirection WalkDirection
     {
@@ -35,12 +37,34 @@ public class SkeletonController : MonoBehaviour
             _walkDirection = value; 
         }
     }
-
     private Vector2 walkDirectionVector = Vector2.right;
 
-    TouchingDirections touchingDirections;
+    public bool _hasTarget = false;
+    public bool HasTarget
+    {
+        get
+        {
+            return _hasTarget;
+        }
+        private set
+        {
+            _hasTarget = value;
+            animator.SetBool(AnimationStrings.hasTarget, value);
+        }
+    }
 
+    public bool CanMove
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
+    }
+
+    TouchingDirections touchingDirections;
+    private Animator animator;
     public float walkSpeed = 3f;
+    public float walkStopRate = 0.05f;
 
     Rigidbody2D rb;
 
@@ -48,6 +72,7 @@ public class SkeletonController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -56,7 +81,20 @@ public class SkeletonController : MonoBehaviour
         {
             FlipDirection();
         }
-        rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+
+        if (CanMove)
+        {
+            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0f, walkStopRate), rb.velocity.y);
+        }
+    }
+
+    private void Update()
+    {
+        HasTarget = attackZone.detectedColliders.Count > 0;
     }
 
     private void FlipDirection()

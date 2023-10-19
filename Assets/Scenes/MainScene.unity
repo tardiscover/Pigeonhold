@@ -258,6 +258,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1135840779029502805, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
   m_PrefabInstance: {fileID: 1135840778716679697}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &202722838 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3740867084990776473, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
+  m_PrefabInstance: {fileID: 1949448609554891146}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4b8e51be3be164c8bdfd190ff78797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &245317441
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,13 +3458,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonSpearman
       objectReference: {fileID: 0}
+    - target: {fileID: 8085846615450536965, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
+      propertyPath: walkSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085846615450536965, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
+      propertyPath: attackZone
+      value: 
+      objectReference: {fileID: 202722838}
     - target: {fileID: 8726118020630962382, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8726118020630962382, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.755
+      value: -1.932
       objectReference: {fileID: 0}
     - target: {fileID: 8726118020630962382, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
       propertyPath: m_LocalPosition.y
