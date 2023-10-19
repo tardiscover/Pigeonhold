@@ -16,8 +16,8 @@ public class TouchingDirections : MonoBehaviour
     RaycastHit2D[] wallHits = new RaycastHit2D[5];
     RaycastHit2D[] ceilingHits = new RaycastHit2D[5];
 
-    private bool _isGrounded;
     [SerializeField]
+    private bool _isGrounded;
     public bool IsGrounded
     {
         get
@@ -31,8 +31,8 @@ public class TouchingDirections : MonoBehaviour
         }
     }
 
-    private bool _isOnWall;
     [SerializeField]
+    private bool _isOnWall;
     public bool IsOnWall
     {
         get
@@ -46,10 +46,10 @@ public class TouchingDirections : MonoBehaviour
         }
     }
 
-    private bool _isOnCeiling;
     private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
 
     [SerializeField]
+    private bool _isOnCeiling;
     public bool IsOnCeiling
     {
         get
