@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8d3f5e502383d479987b7f8357beb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boolName: isHit
+  boolName: lockVelocity
   updateOnState: 1
   updateOnStateMachine: 0
   valueOnEnter: 1
@@ -589,8 +589,14 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 1
     m_Controller: {fileID: 0}
-  - m_Name: isHit
+  - m_Name: lockVelocity
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: hit
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -815,12 +821,12 @@ AnimatorStateMachine:
     - {fileID: 1399569910830588758}
     - {fileID: -5887835863830525768}
     - {fileID: 6528439752705696918}
-  - first: {fileID: 7093576668486614514}
-    second:
-    - {fileID: 850128627076109477}
   - first: {fileID: 1170680969533955248}
     second:
     - {fileID: 7708469752109294071}
+  - first: {fileID: 7093576668486614514}
+    second:
+    - {fileID: 850128627076109477}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 640, y: 120, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
@@ -972,7 +978,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isHit
+    m_ConditionEvent: hit
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isAlive

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class SkeletonController : MonoBehaviour
 {
     public enum WalkableDirection   //!!!TODO: Move to its own file?
@@ -67,12 +67,14 @@ public class SkeletonController : MonoBehaviour
     public float walkStopRate = 0.05f;
 
     Rigidbody2D rb;
+    Damageable damageable;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
+        damageable = GetComponent<Damageable>();
     }
 
     private void FixedUpdate()
@@ -82,13 +84,16 @@ public class SkeletonController : MonoBehaviour
             FlipDirection();
         }
 
-        if (CanMove)
+        if(!damageable.LockVelocity)
         {
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0f, walkStopRate), rb.velocity.y);
+            if (CanMove)
+            {
+                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0f, walkStopRate), rb.velocity.y);
+            }
         }
     }
 
@@ -111,5 +116,10 @@ public class SkeletonController : MonoBehaviour
         {
             Debug.LogError("Cureent walkable direction is not set to legal values of right or left");
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
