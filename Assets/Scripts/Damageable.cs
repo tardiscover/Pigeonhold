@@ -58,19 +58,24 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private bool isInvincible = false;
-
-    public bool IsHit { 
+    /// <summary>
+    /// The velocity should not be changed while this is true but needs to be respected by other physics components like
+    /// the player controller
+    /// </summary>
+    public bool LockVelocity
+    {
         get
         {
-            return animator.GetBool(AnimationStrings.isHit);
+            return animator.GetBool(AnimationStrings.lockVelocity);
         }
-        private set
+        set
         {
-            animator.SetBool(AnimationStrings.isHit, value);
+            animator.SetBool(AnimationStrings.lockVelocity, true);
         }
     }
+
+    [SerializeField]
+    private bool isInvincible = false;
 
     private float timeSinceHit = 0f;
 
@@ -103,7 +108,8 @@ public class Damageable : MonoBehaviour
             isInvincible = true;
 
             //Notify other subscribed components that the damageable was hit to handle the knockback and such
-            IsHit = true;
+            animator.SetTrigger(AnimationStrings.hitTrigger);
+            LockVelocity = true;
             damageableHit?.Invoke(damage, knockback);   //"?" ensures only Invokes if damageableHit is not null
 
             return true;

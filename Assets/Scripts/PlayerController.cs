@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void FixedUpdate()
     {
-        if (!damageable.IsHit)
+        if (!damageable.LockVelocity)
         {
             rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
         }
