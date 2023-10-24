@@ -13,6 +13,7 @@ public class SkeletonController : MonoBehaviour
     }
 
     public DetectionZone attackZone;
+    public DetectionZone cliffDetectionZone;
 
     private WalkableDirection _walkDirection;
     public WalkableDirection WalkDirection
@@ -121,5 +122,13 @@ public class SkeletonController : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    public void OnCliffDetected()
+    {
+        if (touchingDirections.IsGrounded)
+        {
+            FlipDirection();
+        }
     }
 }
