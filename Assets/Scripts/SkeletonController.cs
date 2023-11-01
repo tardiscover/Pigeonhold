@@ -64,7 +64,8 @@ public class SkeletonController : MonoBehaviour
 
     TouchingDirections touchingDirections;
     private Animator animator;
-    public float walkSpeed = 3f;
+    public float walkAcceleration = 3f;
+    public float maxSpeed = 3f;
     public float walkStopRate = 0.05f;
 
     Rigidbody2D rb;
@@ -89,7 +90,9 @@ public class SkeletonController : MonoBehaviour
         {
             if (CanMove)
             {
-                rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                //Accelerate toward max Speed
+                rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed), 
+                    rb.velocity.y);
             }
             else
             {

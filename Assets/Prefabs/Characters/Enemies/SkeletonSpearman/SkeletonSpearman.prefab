@@ -145,7 +145,8 @@ MonoBehaviour:
   attackZone: {fileID: 3740867084990776473}
   cliffDetectionZone: {fileID: 638328457566852838}
   _hasTarget: 0
-  walkSpeed: 1
+  walkAcceleration: 5
+  maxSpeed: 3
   walkStopRate: 0.05
 --- !u!114 &1301973565770111447
 MonoBehaviour:
