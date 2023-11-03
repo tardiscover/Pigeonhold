@@ -14687,7 +14687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4575807103010484277, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.051
+      value: -1.206
       objectReference: {fileID: 0}
     - target: {fileID: 4575807103010484277, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15128,13 +15128,33 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5551237921099875315, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
-      propertyPath: walkSpeed
-      value: 3
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 5551237921099875315, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
-      propertyPath: jumpImpulse
-      value: 4
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
+      value: d91c6018-1bf1-4724-88ac-2ff8fc2d2e30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
+      value: Player/RangedAttack[/Keyboard/f]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733988459024188824, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

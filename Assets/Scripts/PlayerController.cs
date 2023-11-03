@@ -195,12 +195,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
+        Debug.Log($"OnAttack");   //!!!!!!!!!
         //TODO Check if alive as well
         if (context.started)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
     }
+
+    public void OnRangedAttack(InputAction.CallbackContext context)
+    {
+        Debug.Log($"OnRangedAttack");   //!!!!!!!!!
+        //TODO Check if alive as well
+        if (context.started)
+        {
+            animator.SetTrigger(AnimationStrings.rangedAttackTrigger);
+        }
+    }
+
 
     public void OnHit(int damage, Vector2 knockback)
     {
