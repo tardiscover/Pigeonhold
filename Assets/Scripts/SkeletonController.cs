@@ -88,7 +88,7 @@ public class SkeletonController : MonoBehaviour
 
         if(!damageable.LockVelocity)
         {
-            if (CanMove)
+            if (CanMove && touchingDirections.IsGrounded)
             {
                 //Accelerate toward max Speed
                 rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime), -maxSpeed, maxSpeed), 
