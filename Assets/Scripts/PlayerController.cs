@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
+    PlayerInput playerInput;
 
     public float CurrentMoveSpeed
     {
@@ -128,6 +129,26 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void Start()
+    {
+        InitializeActionMaps();
+    }
+
+    /// <summary>
+    /// Initializes the action maps for this player.  Note in this case we allow both the Player and UI ActionMaps simultaneously for the player
+    /// on whatever device is assigned to them.  DON"T just create a second PlayerInput for the UI ActionMap, because this will cause issues when 
+    /// there is more than one device.  (Each "player" will be assigned only one device.)
+    /// https://www.youtube.com/watch?v=NZBAr_V7r0M
+    /// </summary>
+    private void InitializeActionMaps()
+    {
+        playerInput.actions.FindActionMap("Player").Enable();
+        playerInput.actions.FindActionMap("UI").Enable();
+
+        //Note actual code for UI is in UIManager script.
     }
 
     // Start is called before the first frame update
