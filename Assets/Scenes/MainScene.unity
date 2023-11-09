@@ -15188,6 +15188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1135840779029502805, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1135840779029502806, guid: 72584d5a9ec8a75478a51dbddd6e6999, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -15375,8 +15379,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 94932799453418410, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94932799453418410, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 992987841871837604, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
+      propertyPath: m_Value
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2121850024955438433, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
       propertyPath: m_Pivot.x
