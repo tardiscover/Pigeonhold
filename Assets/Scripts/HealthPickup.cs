@@ -7,6 +7,14 @@ public class HealthPickup : MonoBehaviour
     public int healthRestore = 20;
     public Vector3 spinRotationSpeed = new Vector3(0, 180, 0);
 
+    AudioSource pickupSource;
+
+
+    private void Awake()
+    {
+        pickupSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Damageable damageable = collision.GetComponent<Damageable>();
@@ -17,6 +25,12 @@ public class HealthPickup : MonoBehaviour
 
             if (wasHealed)
             {
+                if (pickupSource)
+                {
+                    //Since we are about to destroy this gameObject, create a copy of of its AudioSource to play
+                    //so sound doesn't stop when gameObject is destroyed.
+                    AudioSource.PlayClipAtPoint(pickupSource.clip, gameObject.transform.position, pickupSource.volume);
+                }
                 Destroy(gameObject);
             }
         }
