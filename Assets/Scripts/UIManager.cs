@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+#if (UNITY_WEBGL)
+using UnityEngine.SceneManagement;
+#endif
 
 public class UIManager : MonoBehaviour
 {
