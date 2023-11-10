@@ -36,10 +36,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: hasTarget
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -409,9 +406,9 @@ MonoBehaviour:
   soundToPlay: {fileID: 8300000, guid: a34c4dc865ad59540a781ebf59675eda, type: 3}
   volume: 5
   playOnEnter: 0
-  playOnExit: 1
-  playAfterDelay: 0
-  playDelay: 0.25
+  playOnExit: 0
+  playAfterDelay: 1
+  playDelay: 0.1
 --- !u!1107 &4964574317062609478
 AnimatorStateMachine:
   serializedVersion: 6
