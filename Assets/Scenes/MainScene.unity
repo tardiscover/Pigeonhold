@@ -15010,17 +15010,25 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 273149536045482979, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2199267823037037145, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4575807103010484277, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4575807103010484277, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4575807103010484277, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.206
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 4575807103010484277, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15058,7 +15066,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPickup
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5928516142506840153, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b62c96913039a945b15f879cf9a9a7c, type: 3}
 --- !u!1001 &1728295128
