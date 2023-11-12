@@ -205,6 +205,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!damageable.LockVelocity)
         {
+            //These are for the ladder climbing but can be used elsewhere
+            //Must be called before CheckIfClimbing().
+            //transformY = transform.position.y;  //!!! Intended to be the bottom of the sprite.  Renamed to playerBtm.
+            //transformHY = transformY + climbSpriteHeight;  //!!! Intended to be the top of the sprite.  Renamed to playerTop.
             playerTop = transform.position.y + playerTopOffset;
             playerBtm = transform.position.y + playerBtmOffset;
 
@@ -212,10 +216,7 @@ public class PlayerController : MonoBehaviour
             if (IsClimbing)
             {
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Create subs
-                // these are for the ladder climbing but can be used elsewhere
-                // y position and the y position with the climb sprite height
-                //transformY = transform.position.y;  //!!! Intended to be the bottom of the sprite.  Renamed to playerBtm.
-                //transformHY = transformY + climbSpriteHeight;  //!!! Intended to be the top of the sprite.  Renamed to playerTop.
+
                 Debug.Log($"playerBtmOffset = {playerCollider.bounds.min.y - transform.position.y}, playerTopOffset = {playerCollider.bounds.max.y - transform.position.y}");  //!!!
 
                 // debug lines for our ladder handling  //!!!!!
@@ -365,13 +366,15 @@ public class PlayerController : MonoBehaviour
                 ////    }
                 ////}
 
+                //Animate (or don't) based on movement speed (whether vertical or horizontal)
+                animator.speed = Mathf.Abs(moveInput.magnitude);
                 rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, moveInput.y * CurrentMoveSpeed);
             }
             else
             {
+                //Only horizontal velocity from input.  Vertical velocity from gravity or whatever.
                 rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, rb.velocity.y);
             }
-            //CheckIfClimbing();  //!!!
         }
 
         animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);

@@ -38,6 +38,8 @@ public class Ladder : MonoBehaviour
     public float handlerBottomOffset = 0.04f;
     public float platform_offset = -0.04f;   //!!!
 
+    private float nearEnoughToLadderCenter = 0.1f;
+
     // flag to let the player know that climbing is possible
     [HideInInspector] public bool isNearLadder;
 
@@ -74,7 +76,6 @@ public class Ladder : MonoBehaviour
         float newColliderHeight = rectTransform.rect.height - 0.5f;
         float newColliderYOffset = newColliderHeight / 2.0f;
 
-        Debug.Log($"btmOfLadderTop = {topSpriteTop}, topOfLadderBtm = {topSpriteBtm}, newMidOfLadderHeight = {newMidSpriteHeight}"); //!!!!!!!
         midSpriteRenderer.size = new Vector2(midSpriteRenderer.size.x, newMidSpriteHeight);    //!!!!!!
 
         ladderBoxCollider2D.size = new Vector2(ladderBoxCollider2D.size.x, newColliderHeight);
@@ -91,31 +92,7 @@ public class Ladder : MonoBehaviour
 
     private void InitPositioning()
     {
-        //// set up the positioning
-        //GetComponent<BoxCollider2D>().offset = Vector2.zero;
-        //Vector2 size = GetComponent<BoxCollider2D>().size;
-        //Transform ladderTop = transform.GetChild(0).transform;
-        //Transform ladderBottom = transform.GetChild(1).transform;
-        //Transform ladderPlatform = transform.GetChild(2).transform;
-        //ladderTop.position = new Vector3(transform.position.x, transform.position.y + (size.y / 2), 0);
-        //ladderBottom.position = new Vector3(transform.position.x, transform.position.y - (size.y / 2), 0);
-
-        //// set up the variables for the climber to use
-        //posX = transform.position.x;
-        //posTopY = ladderTop.transform.position.y;
-        //posBottomY = ladderBottom.transform.position.y;
-        //posPlatformY = ladderPlatform.transform.position.y;
-        //posTopHandlerY = posTopY + handlerTopOffset;
-        //posBottomHandlerY = posBottomY + handlerBottomOffset;
-
         // set up the positioning
-        //GetComponent<BoxCollider2D>().offset = Vector2.zero;
-        //Vector2 size = ladderBoxCollider2D.size;
-        //Transform topStep = transform.GetChild(0).transform;
-        //Transform btmStep = transform.GetChild(1).transform;
-        //Transform platform = transform.GetChild(2).transform;
-        //topStep.position = new Vector3(transform.position.x, transform.position.y + (size.y / 2), 0);
-        //btmStep.position = new Vector3(transform.position.x, transform.position.y - (size.y / 2), 0);
         topStep.position = new Vector3(transform.position.x, transform.position.y + Mathf.Floor(rectTransform.rect.height - 0.1f), 0);  //This assumes the effective "top step" of the ladder is the integer just below the sprite's apparent top.
         btmStep.position = new Vector3(transform.position.x, transform.position.y, 0);  //transform position of ladder is center bottom, so is bottom step
         platform.position = new Vector3(topStep.position.x, topStep.position.y + platform_offset, 0);   //platform_offset is likely negative
@@ -135,7 +112,7 @@ public class Ladder : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // if the player is within the range (center-ish of the ladder)
-            isNearLadder = (other.gameObject.transform.position.x > (posX - 0.05f) && other.gameObject.transform.position.x < (posX + 0.05f));  //Close to horiz center of ladder
+            isNearLadder = (other.gameObject.transform.position.x > (posX - nearEnoughToLadderCenter) && other.gameObject.transform.position.x < (posX + nearEnoughToLadderCenter));  //Close to horiz center of ladder
             other.gameObject.GetComponent<PlayerController>().ladder = this;
             Debug.Log($"Ladder OnTriggerStay2D, isNearLadder = {isNearLadder}");    //!!!
         }
