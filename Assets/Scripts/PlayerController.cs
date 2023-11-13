@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     Collider2D playerCollider;
     float playerTopOffset;   //The offset needed to add to the transform.position.y to get the playerTop.  Precalced to make calc of playerTop faster.
     float playerBtmOffset;   //The offset needed to add to the transform.position.y to get the playerBtm.  Precalced to make calc of playerBtm faster.
-    bool freezeInput;
 
     public float CurrentMoveSpeed
     {
@@ -215,158 +214,17 @@ public class PlayerController : MonoBehaviour
             CheckIfClimbing();  //!!!
             if (IsClimbing)
             {
-                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Create subs
+                //// debug lines for our ladder handling  //!!!!!
+                //Debug.DrawLine(new Vector3(ladder.posX - 2f, ladder.posTopHandlerY, 0),
+                //    new Vector3(ladder.posX + 2f, ladder.posTopHandlerY, 0), Color.blue);
+                //Debug.DrawLine(new Vector3(ladder.posX - 2f, ladder.posBottomHandlerY, 0),
+                //    new Vector3(ladder.posX + 2f, ladder.posBottomHandlerY, 0), Color.blue);
+                //Debug.DrawLine(new Vector3(transform.position.x - 2f, playerTop, 0),
+                //    new Vector3(transform.position.x + 2f, playerTop, 0), Color.magenta);
+                //Debug.DrawLine(new Vector3(transform.position.x - 2f, playerBtm, 0),
+                //    new Vector3(transform.position.x + 2f, playerBtm, 0), Color.magenta);
 
-                Debug.Log($"playerBtmOffset = {playerCollider.bounds.min.y - transform.position.y}, playerTopOffset = {playerCollider.bounds.max.y - transform.position.y}");  //!!!
-
-                // debug lines for our ladder handling  //!!!!!
-                Debug.DrawLine(new Vector3(ladder.posX - 2f, ladder.posTopHandlerY, 0),
-                    new Vector3(ladder.posX + 2f, ladder.posTopHandlerY, 0), Color.blue);
-                Debug.DrawLine(new Vector3(ladder.posX - 2f, ladder.posBottomHandlerY, 0),
-                    new Vector3(ladder.posX + 2f, ladder.posBottomHandlerY, 0), Color.blue);
-                Debug.DrawLine(new Vector3(transform.position.x - 2f, playerTop, 0),
-                    new Vector3(transform.position.x + 2f, playerTop, 0), Color.magenta);
-                Debug.DrawLine(new Vector3(transform.position.x - 2f, playerBtm, 0),
-                    new Vector3(transform.position.x + 2f, playerBtm, 0), Color.magenta);
-
-                //// we just passed the top ladder handler position
-                //if (playerTop > ladder.posTopHandlerY)
-                //{
-                //    // this should only happen when we're not climbing down
-                //    // otherwise we get some real funky results!
-                //    if (!isClimbingDown)
-                //    {
-                //        // start the climb transition animation
-                //        if (!startedClimbTransition)
-                //        {
-                //            startedClimbTransition = true;
-                //            ClimbTransition(true);
-                //        }
-                //        else if (finishedClimbTransition)
-                //        {
-                //            // we only want this block to happen once
-                //            finishedClimbTransition = false;
-
-                //            // we may not be completely touching the ground so setting
-                //            // this to false will stop the jump landed audio clip
-                //            //!!!isJumping = false;
-
-                //            // climb transition has finished now reposition ourself
-                //            // we kind of dip into the ground so we pad a little on our new y
-                //            //!!!animator.Play("Player_Idle");
-                //            transform.position = new Vector2(ladder.posX, ladder.posPlatformY + 0.005f);
-
-                //            //!!!!!!!!!
-                //            // at the top of the ladder
-                //            if (!atLaddersEnd)
-                //            {
-                //                // reset climbing after a short delay
-                //                // gives the rigidbody and ground check to settle
-                //                atLaddersEnd = true;
-                //                Invoke("ResetClimbing", 0.1f);  //Calls ResetClimbing() after 0.1 second delay
-                //                Debug.Log($"***atLaddersEnd");    //!!!!!!!!!!!
-                //            }
-                //        }
-                //    }
-                //}
-                //else if (playerBtm < ladder.posBottomHandlerY)
-                //{
-                //    // reaching this point means we have gone below of bottom handler
-                //    // and haven't touched the ground so we should let go of the ladder
-                //    ResetClimbing();
-                //    Debug.Log($"***ResetClimbing! playerBtm = {playerBtm} + ladder.posBottomHandlerY = {ladder.posBottomHandlerY}");    //!!!!!!!!!!!
-                //}
-                ////else
-                ////{
-                ////    // this should only happen when we're not climbing down
-                ////    // otherwise we get some real funky results!
-                ////    if (!isClimbingDown)
-                ////    {
-                ////        // jump off the ladder as long as there is no vertical input
-                ////        //!!!if (keyJump && keyVertical == 0)
-                ////        if (moveInput.y == 0)
-                ////        {
-                ////            ResetClimbing();
-                ////        }
-                ////        // reached the ground by climbing down
-                ////        else if (touchingDirections.IsGrounded && !hasStartedClimbing)
-                ////        {
-                ////            // we may not be completely touching the ground so setting
-                ////            // this to false will stop the jump landed audio clip
-                ////            //!!!isJumping = false;
-
-                ////            // climbing has finished and now reposition ourself
-                ////            // we kind of dip into the ground so we shave a little off our new y
-                ////            animator.Play("Player_Idle");
-                ////            transform.position = new Vector2(ladder.posX, ladder.posBottomY - 0.005f);
-
-                ////            // at the bottom of the ladder
-                ////            if (!atLaddersEnd)
-                ////            {
-                ////                // reset climbing after a short delay
-                ////                // gives the rigidbody and ground check to settle
-                ////                atLaddersEnd = true;
-                ////                Invoke("ResetClimbing", 0.1f);
-                ////            }
-                ////        }
-                ////        // somewhere in between the top and bottom of the ladder
-                ////        else
-                ////        {
-                ////            // animate if we're moving in either direction
-                ////            animator.speed = Mathf.Abs(moveInput.y);
-
-                ////            // move on the ladder as long as we're not shooting/throwing
-                ////            //!!!if (moveInput.y != 0 && !isShooting)
-                ////            if (moveInput.y != 0)
-                ////            {
-                ////                // apply the direction and climb speed to our position
-                ////                Vector3 climbDirection = new Vector3(0, climbSpeed) * moveInput.y;
-                ////                transform.position = transform.position + climbDirection * Time.deltaTime;
-                ////            }
-
-                ////            //// if we're shooting or throwing then we can change our horizontal direction
-                ////            //if (isShooting || isThrowing)
-                ////            //{
-                ////            //    // update the facing direction
-                ////            //    if (moveInput.x < 0)
-                ////            //    {
-                ////            //        // facing right while shooting left - flip
-                ////            //        if (isFacingRight)
-                ////            //        {
-                ////            //            Flip();
-                ////            //        }
-                ////            //    }
-                ////            //    else if (moveInput.x > 0)
-                ////            //    {
-                ////            //        // facing left while shooting right - flip
-                ////            //        if (!isFacingRight)
-                ////            //        {
-                ////            //            Flip();
-                ////            //        }
-                ////            //    }
-                ////            //    // and then choose which animation to play
-                ////            //    if (isShooting)
-                ////            //    {
-                ////            //        // play the shooting climb animation
-                ////            //        animator.Play("Player_ClimbShoot");
-                ////            //    }
-                ////            //    else if (isThrowing)
-                ////            //    {
-                ////            //        // play the throwing climb animation
-                ////            //        animator.Play("Player_ClimbThrow");
-                ////            //    }
-                ////            //}
-                ////            //else
-                ////            //{
-                ////            //    // not shooting or throwing then we play
-                ////            //    // the regular climbing animation
-                ////            //    animator.Play("Player_Climb");
-                ////            //}
-                ////        }
-                ////    }
-                ////}
-
-                //Animate (or don't) based on movement speed (whether vertical or horizontal)
+                //Animate (or don't) based on movement speed (whether vertical or horizontal).
                 animator.speed = Mathf.Abs(moveInput.magnitude);
                 rb.velocity = new Vector2(moveInput.x * CurrentMoveSpeed, moveInput.y * CurrentMoveSpeed);
             }
@@ -382,15 +240,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (freezeInput)
-        {
-            moveInput = Vector2.zero;   //Move controls are temporarily frozen while preprogrammed behavior happens
-            //!!! debug freezeInput works properly for other inputs
-        }
-        else
-        {
-            moveInput = context.ReadValue<Vector2>();
-        }
+        moveInput = context.ReadValue<Vector2>();
 
         if (IsAlive)
         {
@@ -432,19 +282,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        //TODO Check if alive as well
-        if (context.started && touchingDirections.IsGrounded && CanMove)
+        if (context.started && CanMove)
         {
-            animator.SetTrigger(AnimationStrings.jumpTrigger);
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            if (touchingDirections.IsGrounded || IsClimbing)
+            {
+                ResetClimbing();
+                animator.SetTrigger(AnimationStrings.jumpTrigger);
+                rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+            }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        Debug.Log($"OnAttack");   //!!!!!!!!!
-        //TODO Check if alive as well
-        if (context.started)
+        if (context.started && IsAlive)
         {
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
@@ -452,9 +303,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnRangedAttack(InputAction.CallbackContext context)
     {
-        Debug.Log($"OnRangedAttack");   //!!!!!!!!!
-        //TODO Check if alive as well
-        if (context.started)
+        if (context.started && IsAlive)
         {
             animator.SetTrigger(AnimationStrings.rangedAttackTrigger);
         }
@@ -463,84 +312,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
+        ResetClimbing();
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 
     //---------------------------------------------------
-
-    //// wrapper for the StartedClimbingCo() coroutine below
-    //void StartedClimbing()
-    //{
-    //    StartCoroutine(StartedClimbingCo());
-    //}
-
-    //// started climbing coroutine
-    //// (this gives us a delay from the ground check giving false positives)
-    //private IEnumerator StartedClimbingCo()
-    //{
-    //    hasStartedClimbing = true;
-    //    yield return new WaitForSeconds(0.1f);
-    //    hasStartedClimbing = false;
-    //}
-
-    // wrapper for the ClimbTransitionCo() coroutine below
-    void ClimbTransition(bool movingUp)
-    {
-        StartCoroutine(ClimbTransitionCo(movingUp));
-    }
-
-    // climbing transition animation for when we move to the top of
-    // the ladder or when we move down from the top of it
-    private IEnumerator ClimbTransitionCo(bool movingUp)
-    {
-        Debug.Log("ClimbTransitionCo"); //!!!!!!!!!
-        // we don't want any player input during this
-        FreezeInput(true);
-
-        // flag to signal we're not done performing the transition
-        finishedClimbTransition = false;
-
-        // there are two positions, going up and going down
-        Vector3 newPos = Vector3.zero;
-        if (movingUp)
-        {
-            // moving up we transition the top offset amount
-            // (it looks like his body is half above the the ladder top)
-            newPos = new Vector3(ladder.posX, playerBtm + ladder.handlerTopOffset, 0);
-        }
-        else
-        {
-            // moving down we first reposition our y (~position at the end of the moving up transition)
-            // then we transition down the top offset amount so looks like we're climbing down from the top(ish)
-            transform.position = new Vector3(ladder.posX, ladder.posTopHandlerY - climbSpriteHeight + ladder.handlerTopOffset, 0);
-            newPos = new Vector3(ladder.posX, ladder.posTopHandlerY - climbSpriteHeight, 0);
-        }
-
-        while (transform.position != newPos)
-        {
-            // we are going to move towards the new position playing our other climb animation (the bent over look)
-            transform.position = Vector3.MoveTowards(transform.position, newPos, climbSpeed * Time.deltaTime);
-            animator.speed = 1;
-            //!!!animator.Play("Player_ClimbTop");
-            yield return null;
-        }
-
-        // done climbing down so those other code blocks can work again
-        isClimbingDown = false;
-
-        // now we're signaling that we finished the climb transition
-        finishedClimbTransition = true;
-
-        // give the player back their input
-        FreezeInput(false);
-    }
 
     void CheckIfClimbing()
     {
         // start ladder climbing here
         if (ladder != null)
         {
-            Debug.Log($"CheckIfClimbing: isNearLadder = {ladder.isNearLadder}, moveInput.y = {moveInput.y}, playerTop = {playerTop}, ladder.posTopHandlerY = {ladder.posTopHandlerY}");
             // climbing up
             //if (ladder.isNearLadder && keyVertical > 0 && playerTop < ladder.posTopHandlerY)
             if (ladder.isNearLadder && moveInput.y > 0 && playerTop < ladder.posTopHandlerY)    
@@ -550,28 +332,32 @@ public class PlayerController : MonoBehaviour
                 //!!!animator.speed = 0;
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 //!!!rb.velocity = Vector2.zero;
-                Debug.Log($"transformY = {playerBtm}, transformY + 0.025f = {playerBtm + 0.025f}");  //!!!!!!!
-                //!!!transform.position = new Vector3(ladder.posX, playerBtm + 0.025f, 0);
                 transform.position = new Vector3(ladder.posX, transform.position.y + 0.025f, 0);
-                //!!!StartedClimbing();
             }
 
             // climbing down
             //if (ladder.isNearLadder && keyVertical < 0 && touchingDirections.IsGrounded && playerTop > ladder.posTopHandlerY)
-            if (ladder.isNearLadder && moveInput.y < 0 && touchingDirections.IsGrounded && playerTop > ladder.posTopHandlerY)
+            if (ladder.isNearLadder && moveInput.y < 0 && touchingDirections.IsGrounded)
             {
-                IsClimbing = true;
-                isClimbingDown = true;
-                //!!!animator.speed = 0;
-                rb.bodyType = RigidbodyType2D.Kinematic;
-                //!!!rb.velocity = Vector2.zero;
-                //transform.position = new Vector3(ladder.posX, playerBtm, 0);
-                transform.position = new Vector3(ladder.posX, transform.position.y, 0);
-                //!!!ClimbTransition(false);
+                if (playerTop > ladder.posTopHandlerY)
+                {
+                    IsClimbing = true;
+                    isClimbingDown = true;
+                    //!!!animator.speed = 0;
+                    rb.bodyType = RigidbodyType2D.Kinematic;
+                    //!!!rb.velocity = Vector2.zero;
+                    transform.position = new Vector3(ladder.posX, transform.position.y, 0);
+                }
+                else
+                {
+                    //Reached the bottom while moving down. Stop climbing if you were.
+                    ResetClimbing();
+                }
             }
         }
         else
         {
+            //Not near a ladder.  Stop climbing if you were.
             ResetClimbing();
         }
     }
@@ -591,18 +377,5 @@ public class PlayerController : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.velocity = Vector2.zero;
         }
-    }
-
-    public void FreezeInput(bool freeze)
-    {
-        // freeze/unfreeze user input
-        freezeInput = freeze;
-        //if (freeze)
-        //{
-        //    keyHorizontal = 0;
-        //    keyVertical = 0;
-        //    keyJump = false;
-        //    keyShoot = false;
-        //}
     }
 }

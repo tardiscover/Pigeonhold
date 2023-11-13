@@ -118,8 +118,9 @@ public class SkeletonController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Cureent walkable direction is not set to legal values of right or left");
+            Debug.LogError("Current walkable direction is not set to legal values of right or left");
         }
+        rb.velocity = new Vector2(rb.velocity.x / 2.0f, rb.velocity.y); //Slow down fast creatures so they don't slide off cliffs.  //!!!
     }
 
     public void OnHit(int damage, Vector2 knockback)
