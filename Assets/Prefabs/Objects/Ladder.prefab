@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3961228712906089522}
   - component: {fileID: 3961228712906089523}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: TopSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,8 +327,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 618457039
+  m_SortingLayer: -1
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: f3d3348ff939fca43aeded5f5737087f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -655,7 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 666469961378915433}
   - component: {fileID: 5079221284058134715}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BtmSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -720,8 +720,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 618457039
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 86973ad87af81d241b8432da3e22fb80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -744,7 +744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7018807524087795197}
   - component: {fileID: 8122358093171330380}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MidSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,8 +809,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 618457039
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7f33db6eaed72754bafb5031cb62e90c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
