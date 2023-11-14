@@ -151,15 +151,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ladder Settings")]
     [HideInInspector] public Ladder ladder;     //If the player isNearLadder (for this ladder, this will be the ladder to be/being climbed.  null otherwise.
-    [SerializeField] float climbSpriteHeight = 0.585f;  //Made consistant regardless of sprite animation.  I started with the collider height.  //!!!Used?
+    //!!![SerializeField] float climbSpriteHeight = 0.585f;  //Made consistant regardless of sprite animation.  I started with the collider height.  //!!!Used?
     // ladder climbing variables
     float playerBtm;    //bottom of the player (Renamed from transformY, which assumed player pivot at the bottom.)
     float playerTop;    //top of the player (Renamed from transformHY, which assumed player pivot at the bottom.)
-    [SerializeField] bool isClimbingDown;
-    [SerializeField] bool atLaddersEnd;
+    //!!![SerializeField] bool isClimbingDown;
+    //!!![SerializeField] bool atLaddersEnd;
     [SerializeField] bool hasStartedClimbing;
-    [SerializeField] bool startedClimbTransition;
-    [SerializeField] bool finishedClimbTransition;
+    //!!![SerializeField] bool startedClimbTransition;
+    //!!![SerializeField] bool finishedClimbTransition;
 
     private void Awake()
     {
@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
             //These are for the ladder climbing but can be used elsewhere
             //Must be called before CheckIfClimbing().
             //transformY = transform.position.y;  //!!! Intended to be the bottom of the sprite.  Renamed to playerBtm.
-            //transformHY = transformY + climbSpriteHeight;  //!!! Intended to be the top of the sprite.  Renamed to playerTop.
+            //!!!transformHY = transformY + climbSpriteHeight;  //!!! Intended to be the top of the sprite.  Renamed to playerTop.
             playerTop = transform.position.y + playerTopOffset;
             playerBtm = transform.position.y + playerBtmOffset;
 
@@ -328,7 +328,7 @@ public class PlayerController : MonoBehaviour
             if (ladder.isNearLadder && moveInput.y > 0 && playerTop < ladder.posTopHandlerY)    
             {
                 IsClimbing = true;
-                isClimbingDown = false;
+                //!!!isClimbingDown = false;
                 //!!!animator.speed = 0;
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 //!!!rb.velocity = Vector2.zero;
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
                 if (playerTop > ladder.posTopHandlerY)
                 {
                     IsClimbing = true;
-                    isClimbingDown = true;
+                    //!!!isClimbingDown = true;
                     //!!!animator.speed = 0;
                     rb.bodyType = RigidbodyType2D.Kinematic;
                     //!!!rb.velocity = Vector2.zero;
@@ -370,9 +370,9 @@ public class PlayerController : MonoBehaviour
         if (IsClimbing)
         {
             IsClimbing = false;
-            atLaddersEnd = false;
-            startedClimbTransition = false;
-            finishedClimbTransition = false;
+            //!!!atLaddersEnd = false;
+            //!!!startedClimbTransition = false;
+            //!!!finishedClimbTransition = false;
             animator.speed = 1;
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.velocity = Vector2.zero;

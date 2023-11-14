@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 2804944085077008900}
   - component: {fileID: 1497483988787516923}
   - component: {fileID: 4580253228425672294}
+  - component: {fileID: 1014292418077768361}
   m_Layer: 8
   m_Name: Bat
   m_TagString: Untagged
@@ -345,6 +346,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 50
   _health: 50
   _isAlive: 1
@@ -388,3 +392,15 @@ MonoBehaviour:
   deathCollider: {fileID: 1449632451817775012}
   waypoints: []
   _hasTarget: 0
+--- !u!114 &1014292418077768361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541068383388143646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abec747809b195469dc4cf5c0a689c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
