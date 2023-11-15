@@ -7,8 +7,9 @@ using UnityEngine;
 /// </summary>
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
-    [SerializeField] int enemiesCountInitial;
-    [SerializeField] int enemiesCountCurrent;
+    [SerializeField] int foesLeftMax;
+    [SerializeField] int foesLeftCurrent;
+    public FoesLeftBar foesLeftBar;
 
     protected override void Awake()
     {
@@ -16,14 +17,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         //things to do on Awake in the child, if anything...
     }
 
-    public void IncrementEnemyCount()
+    public void IncrementFoesLeftMax()
     {
-        enemiesCountInitial++;
-        enemiesCountCurrent++;
+        foesLeftMax++;
+        foesLeftCurrent++;
+        foesLeftBar.SetFoesLeft(foesLeftCurrent, foesLeftMax);
     }
 
-    public void DecrementCurrentEnemyCount()
+    public void DecrementFoesLeftMax()
     {
-        enemiesCountCurrent--;
+        foesLeftCurrent--;
+        foesLeftBar.SetFoesLeft(foesLeftCurrent, foesLeftMax);
     }
 }

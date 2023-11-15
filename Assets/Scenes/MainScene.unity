@@ -4624,8 +4624,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b8395b68189124d8ca52dd9a987ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesCountInitial: 0
-  enemiesCountCurrent: 0
+  foesLeftMax: 0
+  foesLeftCurrent: 0
+  foesLeftBar: {fileID: 1125781666}
 --- !u!4 &647075580
 Transform:
   m_ObjectHideFlags: 0
@@ -5782,6 +5783,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d09845cfdc87a44f86549ddddbfcb39, type: 3}
+--- !u!114 &1125781666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7381729494488558625, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
+  m_PrefabInstance: {fileID: 2121850026770290364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f88098f29d853d45b80a97fa0a71c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1169781552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19304,6 +19316,10 @@ PrefabInstance:
       value: GameCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 2705429158115911857, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431151890279212308, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
