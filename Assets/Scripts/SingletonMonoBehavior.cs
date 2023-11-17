@@ -27,7 +27,12 @@ public abstract class SingletonMonoBehavior<T> : MonoBehaviour where T : Singlet
         get
         {
             if (_instance == null) _instance = (T)FindObjectOfType(typeof(T));
-            if (_instance == null) Debug.LogError("An instance of " + typeof(T) + " is needed in the scene, but there is none.");
+
+            //DON'T call the following, or you may get a false error when quitting the application if the Singleton is destroyed before 
+            //something tries to access it in OnDestroy().
+            //Instead, when accessing the Singleton in an OnDestroy(), check "if ([singletontype].Instance)" first.
+            //if (_instance == null) Debug.LogError("An instance of " + typeof(T) + " is needed in the scene, but there is none.");
+
             return _instance;
         }
     }

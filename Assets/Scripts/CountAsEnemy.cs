@@ -6,11 +6,17 @@ public class CountAsEnemy : MonoBehaviour
 {
     void Awake()
     {
-        GameManager.Instance.IncrementFoesLeftMax();
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.IncrementFoesLeftMax();
+        }
     }
 
     private void OnDestroy()
     {
-        GameManager.Instance.DecrementFoesLeftMax();
+        if (GameManager.Instance)
+        {
+            GameManager.Instance.DecrementFoesLeftMax();
+        }
     }
 }
