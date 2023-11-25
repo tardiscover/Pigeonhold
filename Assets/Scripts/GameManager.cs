@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Note that this is a SingletonMonoBehavior.
@@ -10,8 +10,48 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] int foesLeftMax;
     [SerializeField] int foesLeftCurrent;
     public FoesLeftBar foesLeftBar;
-    public GameObject successTextBox;
+    public StatusTextbox statusTextBox;
+    public Sprite winImageIcon;
+    public Sprite loseImageIcon;
     private GameObject player;
+
+    public enum GameStateType
+    {
+        Playing,
+        GameOverWon,
+        GameOverLost
+    }
+
+    private GameStateType _gameState;
+    public GameStateType GameState
+    {
+        get
+        {
+            return _gameState;
+        }
+        set
+        {
+            _gameState = value;
+            switch (_gameState)
+            {
+                case GameStateType.GameOverWon:
+                    statusTextBox.largeText.text = "Success!";
+                    statusTextBox.iconImage.sprite = winImageIcon;
+                    statusTextBox.gameObject.SetActive(true);
+                    break;
+
+                case GameStateType.GameOverLost:
+                    statusTextBox.largeText.text = "R.I.P.!";
+                    statusTextBox.iconImage.sprite = loseImageIcon;
+                    statusTextBox.gameObject.SetActive(true);
+                    break;
+
+                default:    //GameStateType.Playing
+                    statusTextBox.gameObject.SetActive(false);
+                    break;
+            }
+        }
+    }
 
     protected override void Awake()
     {
@@ -23,7 +63,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Start()
     {
-        successTextBox.SetActive(false);
+        GameState = GameStateType.Playing;
     }
 
     public void IncrementFoesLeftMax()
@@ -46,6 +86,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Win()
     {
-        successTextBox.SetActive(true);
+        GameState = GameStateType.GameOverWon;
     }
 }

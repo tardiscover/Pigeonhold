@@ -316,6 +316,11 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 
+    public void OnDeath()
+    {
+        GameManager.Instance.GameState = GameManager.GameStateType.GameOverLost;
+    }
+
     //---------------------------------------------------
 
     void CheckIfClimbing()
