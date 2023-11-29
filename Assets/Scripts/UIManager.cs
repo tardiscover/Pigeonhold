@@ -53,6 +53,11 @@ public class UIManager : MonoBehaviour
 
     public void OnExitGame(InputAction.CallbackContext context)
     {
+        ExitGame();
+    }
+
+    public void ExitGame()
+    {
 #if (UNITY_EDITOR || DEVELOPMENT_BUILD)
         Debug.Log($"{this.name} : {this.GetType()} : {System.Reflection.MethodBase.GetCurrentMethod().Name}");
 #endif

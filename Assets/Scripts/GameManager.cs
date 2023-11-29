@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Note that this is a SingletonMonoBehavior.
@@ -87,5 +88,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private void Win()
     {
         GameState = GameStateType.GameOverWon;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 }
