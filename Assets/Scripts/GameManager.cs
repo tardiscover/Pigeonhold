@@ -14,6 +14,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public StatusTextbox statusTextBox;
     public Sprite winImageIcon;
     public Sprite loseImageIcon;
+    public Button restartButton;
     private GameObject player;
 
     public enum GameStateType
@@ -39,16 +40,19 @@ public class GameManager : SingletonMonoBehavior<GameManager>
                     statusTextBox.largeText.text = "Success!";
                     statusTextBox.iconImage.sprite = winImageIcon;
                     statusTextBox.gameObject.SetActive(true);
+                    restartButton.gameObject.SetActive(true);
                     break;
 
                 case GameStateType.GameOverLost:
                     statusTextBox.largeText.text = "R.I.P.!";
                     statusTextBox.iconImage.sprite = loseImageIcon;
                     statusTextBox.gameObject.SetActive(true);
+                    restartButton.gameObject.SetActive(true);
                     break;
 
                 default:    //GameStateType.Playing
                     statusTextBox.gameObject.SetActive(false);
+                    restartButton.gameObject.SetActive(false);
                     break;
             }
         }
