@@ -173,13 +173,11 @@ public class PlayerController : MonoBehaviour
         damageable = GetComponent<Damageable>();
         playerInput = GetComponent<PlayerInput>();
         playerCollider = GetComponent<Collider2D>();    //!!!
-        menuOpenAction = playerInput.actions["MenuOpen"];
     }
 
     private void Start()
     {
         CalcOffsets();
-        InitializeActionMaps();
     }
 
     /// <summary>
@@ -189,25 +187,6 @@ public class PlayerController : MonoBehaviour
     {
         playerBtmOffset = playerCollider.bounds.min.y - transform.position.y;
         playerTopOffset = playerCollider.bounds.max.y - transform.position.y;
-    }
-
-    /// <summary>
-    /// Initializes the action maps for this player.  Note in this case we allow both the Player and UI ActionMaps simultaneously for the player
-    /// on whatever device is assigned to them.  DON"T just create a second PlayerInput for the UI ActionMap, because this will cause issues when 
-    /// there is more than one device.  (Each "player" will be assigned only one device.)
-    /// https://www.youtube.com/watch?v=NZBAr_V7r0M
-    /// </summary>
-    private void InitializeActionMaps()
-    {
-        playerInput.actions.FindActionMap("Player").Enable();
-        playerInput.actions.FindActionMap("UI").Enable();
-
-        //Note actual code for UI is in UIManager script.
-    }
-
-    private void Update()
-    {
-        MenuOpenInput = menuOpenAction.WasPressedThisFrame();
     }
 
     private void FixedUpdate()

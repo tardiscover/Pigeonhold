@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MenuOpen",
+                    "name": "PauseMenuOpen",
                     "type": "Button",
                     "id": "8ba2fe0f-204e-46d1-8891-4586c4441881",
                     "expectedControlType": "Button",
@@ -418,7 +418,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "MenuOpen",
+                    "action": "PauseMenuOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -429,7 +429,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "MenuOpen",
+                    "action": "PauseMenuOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -533,6 +533,15 @@
                     "name": "Exit",
                     "type": "Button",
                     "id": "68870254-c3d3-4c6e-8637-d5e6de6dff2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PauseMenuClose",
+                    "type": "Button",
+                    "id": "d591d57f-9a4e-4d4f-bca5-1f44614f90cd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -966,6 +975,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d2a2a7d-f2d3-4fad-83c9-31f293a104a6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "PauseMenuClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f5b0be8-5ec3-4c40-9963-f8b24de89e6b",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PauseMenuClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
