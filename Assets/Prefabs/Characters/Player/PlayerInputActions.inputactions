@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MenuOpen",
+                    "type": "Button",
+                    "id": "8ba2fe0f-204e-46d1-8891-4586c4441881",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -401,6 +410,28 @@
                     "action": "RangedAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f3a2405-0a2e-411b-a10d-3a7997246a74",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "MenuOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "793531c0-c692-47cc-836b-80721aa2a378",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MenuOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -499,7 +530,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Escape",
+                    "name": "Exit",
                     "type": "Button",
                     "id": "68870254-c3d3-4c6e-8637-d5e6de6dff2a",
                     "expectedControlType": "Button",
@@ -930,11 +961,11 @@
                 {
                     "name": "",
                     "id": "f4633a3c-35c3-4fa9-bf95-6667f49202a9",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Escape",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

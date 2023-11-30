@@ -51,23 +51,29 @@ public class UIManager : MonoBehaviour
         tmpText.text = "+" + healthRestored.ToString();
     }
 
-    public void OnExitGame(InputAction.CallbackContext context)
+    /// <summary>
+    /// RestartGame called from RestartButton
+    /// </summary>
+    public void OnRestartButtonClick()
     {
-        ExitGame();
+        GameManager.Instance.RestartGame();
     }
 
-    public void ExitGame()
+    /// <summary>
+    /// ExitGame called from Input (keyboard, gamepad, etc.)
+    /// Hitting X on keyboard for example.  //!!! Do we even want this?
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnExitGame(InputAction.CallbackContext context)
     {
-#if (UNITY_EDITOR || DEVELOPMENT_BUILD)
-        Debug.Log($"{this.name} : {this.GetType()} : {System.Reflection.MethodBase.GetCurrentMethod().Name}");
-#endif
+        GameManager.Instance.ExitGame();
+    }
 
-#if (UNITY_EDITOR)
-        UnityEditor.EditorApplication.isPlaying = false;
-#elif (Unity_STANDALONE)
-        Application.Quit();
-#elif (UNITY_WEBGL)
-        SceneManager.LoadScene("QuitScene");
-#endif
+    /// <summary>
+    /// ExitGame called from ExitGameButton.
+    /// </summary>
+    public void OnExitGameButtonClick()
+    {
+        GameManager.Instance.ExitGame();
     }
 }

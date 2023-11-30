@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public float airWalkSpeed = 3f;
     public float climbSpeed = 1f;
     public float jumpImpulse = 10f;
+    public bool MenuOpenInput { get; private set; }
+
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
     Collider2D playerCollider;
     float playerTopOffset;   //The offset needed to add to the transform.position.y to get the playerTop.  Precalced to make calc of playerTop faster.
     float playerBtmOffset;   //The offset needed to add to the transform.position.y to get the playerBtm.  Precalced to make calc of playerBtm faster.
+
+    private InputAction menuOpenAction;
 
     public float CurrentMoveSpeed
     {
@@ -169,6 +173,7 @@ public class PlayerController : MonoBehaviour
         damageable = GetComponent<Damageable>();
         playerInput = GetComponent<PlayerInput>();
         playerCollider = GetComponent<Collider2D>();    //!!!
+        menuOpenAction = playerInput.actions["MenuOpen"];
     }
 
     private void Start()
@@ -198,6 +203,11 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindActionMap("UI").Enable();
 
         //Note actual code for UI is in UIManager script.
+    }
+
+    private void Update()
+    {
+        MenuOpenInput = menuOpenAction.WasPressedThisFrame();
     }
 
     private void FixedUpdate()

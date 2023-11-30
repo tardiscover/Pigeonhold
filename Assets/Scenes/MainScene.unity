@@ -19761,6 +19761,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2121850024955438432, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2121850024955438433, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -19879,7 +19883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5663351977496916552, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitGame
+      value: OnExitGameButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 5663351977496916552, guid: bf2af13c81b433e479140f274bd5b137, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
