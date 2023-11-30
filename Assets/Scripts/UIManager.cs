@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
-/// Note: This sccript should be on the GameCanvas.
+/// Note: This script should be on the GameCanvas.
 /// 
 /// https://www.youtube.com/watch?v=JivuXdrIHK0 and https://www.youtube.com/watch?v=UGh4exLCFRg were combined and modified for this approach.
 /// </summary>
-public class UIManager : MonoBehaviour
+public class UIManager : SingletonMonoBehavior<UIManager>
 {
     public static bool gameIsPaused = false;    //!!! Move to GameManager?
 
@@ -18,11 +19,18 @@ public class UIManager : MonoBehaviour
     public GameObject healthTextPrefab;
     public GameObject pauseMenu;
 
+    public StatusTextbox statusTextBox;
+    public Sprite winImageIcon;
+    public Sprite loseImageIcon;
+    public Button restartButton;
+
     private Canvas gameCanvas;
     private PlayerInput[] playerInputs;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();   //Remember this!
+
         gameCanvas = GetComponent<Canvas>();
         playerInputs = FindObjectsOfType<PlayerInput>();    //Currently only one player, but if ever more than one maps need switching for all
     }
@@ -82,6 +90,8 @@ public class UIManager : MonoBehaviour
         if (!gameIsPaused)
         {
             Pause();
+
+            //!!!GameManager.Instance.GameState = GameStateType.PausedMidGame;
         }
     }
 
@@ -95,6 +105,8 @@ public class UIManager : MonoBehaviour
         if (gameIsPaused)
         {
             Resume();
+
+            //!!!GameManager.Instance.GameState = GameStateType.Playing;
         }
     }
 
@@ -116,8 +128,13 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ExitGame();
     }
 
-    private void Pause()
+    public void Pause()
     {
+        if (GameManager.Instance.GameState == GameStateType.Playing)
+        {
+            GameManager.Instance.GameState = GameStateType.PausedMidGame;
+        }
+
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
@@ -128,8 +145,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void Resume()
+    public void Resume()
     {
+        GameManager.Instance.GameState = GameStateType.Playing;
+
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
@@ -137,6 +156,47 @@ public class UIManager : MonoBehaviour
         foreach (PlayerInput playerInput in playerInputs)
         {
             playerInput.SwitchCurrentActionMap("Player");
+        }
+    }
+
+    public void SetUiForGameState(GameStateType gameState)
+    {
+        switch (gameState)
+        {
+            case GameStateType.GameOverWon:
+                statusTextBox.smallText.text = "GAME OVER";
+                statusTextBox.largeText.text = "Success!";
+                statusTextBox.iconImage.sprite = winImageIcon;
+                statusTextBox.iconImage.enabled = true;
+                //statusTextBox.gameObject.SetActive(true);
+                restartButton.gameObject.SetActive(true);
+                pauseMenu.SetActive(true);
+                break;
+
+            case GameStateType.GameOverLost:
+                statusTextBox.smallText.text = "GAME OVER";
+                statusTextBox.largeText.text = "R.I.P.!";
+                statusTextBox.iconImage.sprite = loseImageIcon;
+                statusTextBox.iconImage.enabled = true;
+                //statusTextBox.gameObject.SetActive(true);
+                restartButton.gameObject.SetActive(true);
+                pauseMenu.SetActive(true);
+                break;
+
+            case GameStateType.PausedMidGame:
+                statusTextBox.smallText.text = "GAME";
+                statusTextBox.largeText.text = "Paused";
+                statusTextBox.iconImage.enabled = false;
+                //statusTextBox.gameObject.SetActive(true);
+                restartButton.gameObject.SetActive(false);
+                pauseMenu.SetActive(true);
+                break;
+
+            default:    //GameStateType.Playing
+                //statusTextBox.gameObject.SetActive(false);
+                restartButton.gameObject.SetActive(false);
+                pauseMenu.SetActive(false);
+                break;
         }
     }
 }

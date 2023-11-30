@@ -307,7 +307,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDeath()
     {
-        GameManager.Instance.GameState = GameManager.GameStateType.GameOverLost;
+        GameManager.Instance.GameState = GameStateType.GameOverLost;
     }
 
     //---------------------------------------------------

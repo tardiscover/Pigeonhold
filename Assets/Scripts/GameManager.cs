@@ -11,18 +11,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] int foesLeftMax;
     [SerializeField] int foesLeftCurrent;
     public FoesLeftBar foesLeftBar;
-    public StatusTextbox statusTextBox;
-    public Sprite winImageIcon;
-    public Sprite loseImageIcon;
-    public Button restartButton;
     private GameObject player;
-
-    public enum GameStateType
-    {
-        Playing,
-        GameOverWon,
-        GameOverLost
-    }
 
     private GameStateType _gameState;
     public GameStateType GameState
@@ -34,27 +23,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         set
         {
             _gameState = value;
-            switch (_gameState)
-            {
-                case GameStateType.GameOverWon:
-                    statusTextBox.largeText.text = "Success!";
-                    statusTextBox.iconImage.sprite = winImageIcon;
-                    statusTextBox.gameObject.SetActive(true);
-                    restartButton.gameObject.SetActive(true);
-                    break;
-
-                case GameStateType.GameOverLost:
-                    statusTextBox.largeText.text = "R.I.P.!";
-                    statusTextBox.iconImage.sprite = loseImageIcon;
-                    statusTextBox.gameObject.SetActive(true);
-                    restartButton.gameObject.SetActive(true);
-                    break;
-
-                default:    //GameStateType.Playing
-                    statusTextBox.gameObject.SetActive(false);
-                    restartButton.gameObject.SetActive(false);
-                    break;
-            }
+            UIManager.Instance.SetUiForGameState(_gameState);
         }
     }
 

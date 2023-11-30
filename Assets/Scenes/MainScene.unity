@@ -4969,10 +4969,6 @@ MonoBehaviour:
   foesLeftMax: 0
   foesLeftCurrent: 0
   foesLeftBar: {fileID: 1125781666}
-  statusTextBox: {fileID: 2121850026770290366}
-  winImageIcon: {fileID: 21300000, guid: 1bc10937fa743784a871436e7dacdb30, type: 3}
-  loseImageIcon: {fileID: 21300000, guid: 4e6fe83ae4703fa49945e1f5fdd4bc18, type: 3}
-  restartButton: {fileID: 1827328064}
 --- !u!4 &647075580
 Transform:
   m_ObjectHideFlags: 0
@@ -20323,6 +20319,10 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 870096541135216389, guid: fca1cdcfaabbe8f47bd9891b7bb2b301, type: 3}
   healthTextPrefab: {fileID: 870096541135216389, guid: b256966b87774b54eaf3af52a2c3d7f9, type: 3}
   pauseMenu: {fileID: 167360235}
+  statusTextBox: {fileID: 2121850026770290366}
+  winImageIcon: {fileID: 21300000, guid: 1bc10937fa743784a871436e7dacdb30, type: 3}
+  loseImageIcon: {fileID: 21300000, guid: 4e6fe83ae4703fa49945e1f5fdd4bc18, type: 3}
+  restartButton: {fileID: 1827328064}
 --- !u!1001 &2610425599346690588
 PrefabInstance:
   m_ObjectHideFlags: 0
