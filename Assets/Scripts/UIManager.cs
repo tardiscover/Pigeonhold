@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-#if (UNITY_WEBGL)
-using UnityEngine.SceneManagement;
-#endif
 
+/// <summary>
+/// Note: This sccript should be on the GameCanvas.
+/// </summary>
 public class UIManager : MonoBehaviour
 {
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
 
-    public Canvas gameCanvas;
+    private Canvas gameCanvas;
 
     private void Awake()
     {
-        gameCanvas = FindObjectOfType<Canvas>();
+        gameCanvas = GetComponent<Canvas>();
     }
 
     private void OnEnable()
