@@ -17,11 +17,13 @@ public class UIManager : SingletonMonoBehavior<UIManager>
 
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
-    public GameObject pauseMenu;
+    public GameObject pausedMenu;
+    public GameObject playingMenu;
 
     public StatusTextbox statusTextBox;
     public Sprite winImageIcon;
     public Sprite loseImageIcon;
+    public Button playGameButton;
     public Button restartButton;
 
     private Canvas gameCanvas;
@@ -100,7 +102,35 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     /// Hitting Esc on keyboard or Start button on gamepad for example.
     /// </summary>
     /// <param name="context"></param>
+    public void OnPauseGameButtonClick()
+    {
+        if (!gameIsPaused)
+        {
+            Pause();
+
+            //!!!GameManager.Instance.GameState = GameStateType.PausedMidGame;
+        }
+    }
+
+    /// <summary>
+    /// PauseMenuOpen called from Input (keyboard, gamepad, etc.)
+    /// Hitting Esc on keyboard or Start button on gamepad for example.
+    /// </summary>
+    /// <param name="context"></param>
     public void OnPauseMenuClose(InputAction.CallbackContext context)
+    {
+        if (gameIsPaused)
+        {
+            Resume();
+
+            //!!!GameManager.Instance.GameState = GameStateType.Playing;
+        }
+    }
+
+    /// <summary>
+    /// ExitGame called from ExitGameButton.
+    /// </summary>
+    public void OnPlayGameButtonClick()
     {
         if (gameIsPaused)
         {
@@ -135,7 +165,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
             GameManager.Instance.GameState = GameStateType.PausedMidGame;
         }
 
-        pauseMenu.SetActive(true);
+        pausedMenu.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
 
@@ -149,7 +179,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     {
         GameManager.Instance.GameState = GameStateType.Playing;
 
-        pauseMenu.SetActive(false);
+        pausedMenu.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
 
@@ -168,9 +198,9 @@ public class UIManager : SingletonMonoBehavior<UIManager>
                 statusTextBox.largeText.text = "Success!";
                 statusTextBox.iconImage.sprite = winImageIcon;
                 statusTextBox.iconImage.enabled = true;
-                //statusTextBox.gameObject.SetActive(true);
+                playGameButton.gameObject.SetActive(false);
                 restartButton.gameObject.SetActive(true);
-                pauseMenu.SetActive(true);
+                SetPausedMenuVisible(true);
                 break;
 
             case GameStateType.GameOverLost:
@@ -178,25 +208,31 @@ public class UIManager : SingletonMonoBehavior<UIManager>
                 statusTextBox.largeText.text = "R.I.P.!";
                 statusTextBox.iconImage.sprite = loseImageIcon;
                 statusTextBox.iconImage.enabled = true;
-                //statusTextBox.gameObject.SetActive(true);
+                playGameButton.gameObject.SetActive(false);
                 restartButton.gameObject.SetActive(true);
-                pauseMenu.SetActive(true);
+                SetPausedMenuVisible(true);
                 break;
 
             case GameStateType.PausedMidGame:
                 statusTextBox.smallText.text = "GAME";
                 statusTextBox.largeText.text = "Paused";
                 statusTextBox.iconImage.enabled = false;
-                //statusTextBox.gameObject.SetActive(true);
+                playGameButton.gameObject.SetActive(true);
                 restartButton.gameObject.SetActive(false);
-                pauseMenu.SetActive(true);
+                SetPausedMenuVisible(true);
                 break;
 
             default:    //GameStateType.Playing
-                //statusTextBox.gameObject.SetActive(false);
-                restartButton.gameObject.SetActive(false);
-                pauseMenu.SetActive(false);
+                //playGameButton.gameObject.SetActive(false);
+                //restartButton.gameObject.SetActive(false);
+                SetPausedMenuVisible(false);
                 break;
         }
+    }
+
+    private void SetPausedMenuVisible(bool value)
+    {
+        pausedMenu.SetActive(value);
+        playingMenu.SetActive(!value);
     }
 }

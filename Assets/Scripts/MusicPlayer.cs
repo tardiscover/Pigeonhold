@@ -11,14 +11,7 @@ public class MusicPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PositionMusicButtons();
         PlayMusicWithIntro();
-    }
-
-    private void PositionMusicButtons()
-    {
-        //Ensure buttons are in the same place, even though one one will be visible at a time
-        playMusicButton.gameObject.transform.position = stopMusicButton.gameObject.transform.position;
     }
 
     public void PlayMusicWithIntro()
