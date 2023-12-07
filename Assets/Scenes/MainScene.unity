@@ -6171,7 +6171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 2084379250}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1037777013
@@ -18628,18 +18628,18 @@ PrefabInstance:
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 529216657}
+      objectReference: {fileID: 2121850026770290372}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StopMusic
+      value: OnStopMusicButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MusicPlayer, Assembly-CSharp
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -19983,18 +19983,18 @@ PrefabInstance:
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 529216657}
+      objectReference: {fileID: 2121850026770290372}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayMusic
+      value: OnPlayMusicButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MusicPlayer, Assembly-CSharp
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -20061,6 +20061,22 @@ Transform:
   m_Father: {fileID: 586957898}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2084379250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3137628705363658253, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
+  m_PrefabInstance: {fileID: 30876524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2084379251 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 676795166977299847, guid: a8934080b1d615845b71b7b43edc2793, type: 3}
+  m_PrefabInstance: {fileID: 30876524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084379250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2084844580
 GameObject:
   m_ObjectHideFlags: 0
@@ -20823,12 +20839,17 @@ MonoBehaviour:
   damageTextPrefab: {fileID: 870096541135216389, guid: fca1cdcfaabbe8f47bd9891b7bb2b301, type: 3}
   healthTextPrefab: {fileID: 870096541135216389, guid: b256966b87774b54eaf3af52a2c3d7f9, type: 3}
   pausedMenu: {fileID: 167360235}
+  defaultPausedMenuButton: {fileID: 162427351}
   playingMenu: {fileID: 102572584}
+  defaultPlayingMenuButton: {fileID: 2084379251}
   statusTextBox: {fileID: 2121850026770290366}
   winImageIcon: {fileID: 21300000, guid: 1bc10937fa743784a871436e7dacdb30, type: 3}
   loseImageIcon: {fileID: 21300000, guid: 4e6fe83ae4703fa49945e1f5fdd4bc18, type: 3}
+  stopMusicButton: {fileID: 1603718971}
+  playMusicButton: {fileID: 2046897233}
   playGameButton: {fileID: 162427351}
   restartButton: {fileID: 1861722940}
+  musicPlayer: {fileID: 529216657}
 --- !u!1001 &2610425599346690588
 PrefabInstance:
   m_ObjectHideFlags: 0

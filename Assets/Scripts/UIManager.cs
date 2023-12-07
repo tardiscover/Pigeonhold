@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -18,13 +19,22 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject pausedMenu;
+    public Button defaultPausedMenuButton;
     public GameObject playingMenu;
+    public Button defaultPlayingMenuButton;
 
     public StatusTextbox statusTextBox;
     public Sprite winImageIcon;
     public Sprite loseImageIcon;
+
+    public Button stopMusicButton;
+    public Button playMusicButton;
     public Button playGameButton;
     public Button restartButton;
+
+    public MusicPlayer musicPlayer;
+
+    private Dictionary<string, Button> buttonDictionary;    //A dictionary of all buttons to make it easier to select them by name.
 
     private Canvas gameCanvas;
     private PlayerInput[] playerInputs;
@@ -141,6 +151,24 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     }
 
     /// <summary>
+    /// StopMusic called from StopMusicButton.
+    /// </summary>
+    public void OnStopMusicButtonClick()
+    {
+        musicPlayer.StopMusic();
+        SelectButton(playMusicButton);
+    }
+
+    /// <summary>
+    /// PlayMusic called from PlayMusicButton.
+    /// </summary>
+    public void OnPlayMusicButtonClick()
+    {
+        musicPlayer.PlayMusic();
+        SelectButton(stopMusicButton);
+    }
+
+    /// <summary>
     /// ExitGame called from Input (keyboard, gamepad, etc.)
     /// Hitting X on keyboard for example.  //!!! Do we even want this?
     /// </summary>
@@ -201,6 +229,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
                 playGameButton.gameObject.SetActive(false);
                 restartButton.gameObject.SetActive(true);
                 SetPausedMenuVisible(true);
+                SelectButton(restartButton);
                 break;
 
             case GameStateType.GameOverLost:
@@ -211,6 +240,7 @@ public class UIManager : SingletonMonoBehavior<UIManager>
                 playGameButton.gameObject.SetActive(false);
                 restartButton.gameObject.SetActive(true);
                 SetPausedMenuVisible(true);
+                SelectButton(restartButton);
                 break;
 
             case GameStateType.PausedMidGame:
@@ -234,5 +264,22 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     {
         pausedMenu.SetActive(value);
         playingMenu.SetActive(!value);
+        if (value)
+        {
+            SelectButton(defaultPausedMenuButton);
+        }
+        else
+        {
+            SelectButton(defaultPlayingMenuButton);
+        }
     }
+
+    public static void SelectButton(Button button)
+    {
+        if (button != null)
+        {
+            EventSystem.current.SetSelectedGameObject(button.gameObject, new BaseEventData(EventSystem.current));
+        }
+    }
+
 }
