@@ -284,8 +284,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive)
+        if (context.started && IsAlive && !UIManager.IsMouseOverUIThatBlocksClickthrough())
         {
+            Debug.Log("OnAttack");  //!!!
             animator.SetTrigger(AnimationStrings.attackTrigger);
         }
     }

@@ -99,6 +99,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     /// <param name="context"></param>
     public void OnPauseMenuOpen(InputAction.CallbackContext context)
     {
+        Debug.Log("OnPauseMenuOpen");  //!!!
+
         if (!gameIsPaused)
         {
             Pause();
@@ -114,6 +116,8 @@ public class UIManager : SingletonMonoBehavior<UIManager>
     /// <param name="context"></param>
     public void OnPauseGameButtonClick()
     {
+        Debug.Log("OnPauseGameButtonClick");  //!!!
+
         if (!gameIsPaused)
         {
             Pause();
@@ -282,4 +286,29 @@ public class UIManager : SingletonMonoBehavior<UIManager>
         }
     }
 
+    /// <summary>
+    /// Return true if the mouse is over a UI element that should block clickthrough of the mouse.
+    /// For example, over an IconButton that should perform its own click event and NOT the standard one
+    /// from the Player's PlayerInputActions first.
+    /// A modified version of approach in https://www.youtube.com/watch?v=ptmum1FXiLE
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsMouseOverUIThatBlocksClickthrough()
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResultList = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResultList);
+
+        foreach (RaycastResult raycastResult in raycastResultList)
+        {
+            if (raycastResult.gameObject.GetComponent<MouseUIThatBlocksClickthrough>() != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

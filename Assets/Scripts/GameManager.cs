@@ -23,7 +23,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         set
         {
             _gameState = value;
-            UIManager.Instance.SetUiForGameState(_gameState);
+            UIManager.Instance?.SetUiForGameState(_gameState);
         }
     }
 
